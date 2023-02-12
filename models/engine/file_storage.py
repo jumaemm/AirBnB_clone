@@ -6,6 +6,16 @@ for easy readability
 import json
 from models.base_model import BaseModel
 
+CLASSES = {
+        "BaseModel": BaseModel,
+        #"User": User,
+        #"City": City,
+        #"Place": Place,
+        #"State": State,
+        #"Amenity": Amenity,
+        #"Review": Review
+    }
+
 
 class FileStorage:
     """Converts dictionary representation to a JSON string.
@@ -41,6 +51,6 @@ class FileStorage:
             with open(self.__file_path, 'r') as file:
                 ob = json.load(file)
                 for key in ob:
-                    self.__objects[key] = cls[ob[key]["__class__"]](**ob[key])
+                    self.__objects[key] = CLASSES[ob[key]["__class__"]](**ob[key])
         except FileNotFoundError:
             pass
