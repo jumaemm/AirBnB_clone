@@ -33,3 +33,7 @@ The command interpreter can be started by executing the ***console.py*** file. T
     Quit command to exit the program
     (hbnb) quit
     vagrant@ubuntu-focal:~$
+# Authors
+---
+	- Emmanuel Juma - [jumaemm](https://github.com/jumaemm)
+	- Allan Sang - [allenkays](https://github.com/allenkays)
