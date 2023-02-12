@@ -23,9 +23,6 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     storage = storage
 
-    def do_default():
-        pass
-
     def do_create(self, line):
         """Create an instance of the given class. Return it's ID
         """
@@ -92,18 +89,15 @@ class HBNBCommand(cmd.Cmd):
         if (line == "" or line is None):
             print("** class name missing **")
             return
-        rex = (r'^(\w+)\s([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]\
-                {4}-[a-z0-9]{4}-[a-z0-9]{12})\s(\w+)\s(\S+)$')
+        rex = r'^(\S+)(?:\s(\S+)(?:\s(\S+)(?:\s((?:"[^"]*")|(?:(\S)+)))?)?)?'
         match = re.search(rex, line)
         if not match:
             print("** class name missing **")
-        elif classname not in CLASSES:
-            print("** class doesn't exist **")
+            return
         classname = match.group(1)
         uuid = match.group(2)
         attribute = match.group(3)
         value = match.group(4)
-        value = value.strip('\"')
         if classname not in CLASSES:
             print("** class doesn't exist **")
         elif uuid is None:
@@ -117,6 +111,7 @@ class HBNBCommand(cmd.Cmd):
             elif not value:
                 print("** value missing **")
             else:
+                value = value.strip('\"')
                 setattr(storage.all()[key], attribute, value)
                 self.storage.save()
 
