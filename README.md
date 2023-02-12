@@ -1,5 +1,6 @@
 # AirBnB Clone
 ---
+![hbnb logo](logo/logo.png)
 This is the first step of implementing an AirBnB clone style project.
 The first phase consists of creating an interactive console for the project and implementing the models required for the full project as well as handling file storage.
 
