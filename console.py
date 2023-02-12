@@ -3,6 +3,12 @@
 
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.state import State
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 import cmd
 import re
 
@@ -55,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_destroy(self, line):
-        """Destroy the instance of the given classs and ID"""
+        """Destroy the instance of the given class and ID"""
         arg_list = line.split()
         if arg_list:
             if arg_list[0] not in CLASSES:
@@ -77,13 +83,14 @@ class HBNBCommand(cmd.Cmd):
         the entire JSON file"""
         arg_list = [i for i in line.split(" ")]
         instances = self.storage.all().values()
-        if len(arg_list) == 1:
+        if arg_list[0] == "":
             print([str(inst) for inst in instances])
         else:
             if arg_list[0] not in CLASSES:
                 print("** class doesn't exist **")
             else:
-                print([str(inst) for inst in instances])
+                print([str(inst) for inst in instances if
+                      arg_list[0] in str(inst)])
 
     def do_update(self, line):
         if (line == "" or line is None):
