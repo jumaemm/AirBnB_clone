@@ -2,7 +2,7 @@
 """This module is the base module for all other subclasses"""
 from uuid import uuid4
 from datetime import datetime
-from models import storage
+import models
 
 
 class BaseModel:
@@ -39,7 +39,7 @@ class BaseModel:
         """Save the new instance to a file"""
 
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """Create a JSON representation of a BaseModel instance
