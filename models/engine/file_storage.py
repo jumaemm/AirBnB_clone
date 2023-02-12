@@ -5,13 +5,16 @@ for easy readability
 """
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.state import State
 
 CLASSES = {
         "BaseModel": BaseModel,
-        #"User": User,
-        #"City": City,
+        "User": User,
+        "City": City,
         #"Place": Place,
-        #"State": State,
+        "State": State,
         #"Amenity": Amenity,
         #"Review": Review
     }
