@@ -2,7 +2,6 @@
 """This module is the base module for all other subclasses"""
 from uuid import uuid4
 from datetime import datetime
-import models
 
 
 class BaseModel:
@@ -24,9 +23,12 @@ class BaseModel:
                     else:
                         setattr(self, key, datetime.fromisoformat(value))
         else:
+            from models import storage
+
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """String representation of the BaseModel class
@@ -38,8 +40,9 @@ class BaseModel:
     def save(self):
         """Save the new instance to a file"""
 
+        from models import storage
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         """Create a JSON representation of a BaseModel instance
