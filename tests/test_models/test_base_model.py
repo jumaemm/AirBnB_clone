@@ -22,7 +22,8 @@ class TestBaseModel(unittest.TestCase):
         """Check for string representation"""
         test_case = BaseModel()
         self.assertEqual(str(test_case),
-                         "[BaseModel] ({}) {}".format(test_case.id, test_case.__dict__))
+                         "[BaseModel] ({}) {}"
+                         .format(test_case.id, test_case.__dict__))
 
     def test_unique_uuids(self):
         """Check if uuids are unique"""
@@ -44,7 +45,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_kwargs_passed(self):
         """Test that kwargs are passed to create an instance"""
-        test_dict = {"id": uuid4(), "created_at": datetime.utcnow().isoformat(),
+        test_dict = {"id": uuid4(), "created_at":
+                     datetime.utcnow().isoformat(),
                      "updated_at": datetime.utcnow().isoformat()}
         test_case = BaseModel(**test_dict)
         self.assertEqual(test_case.id, test_dict["id"])

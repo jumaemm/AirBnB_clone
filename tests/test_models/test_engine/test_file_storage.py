@@ -62,6 +62,5 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(json.loads(string), json.loads(js))
 
 
-
 if __name__ == '__main__':
     unittest.main()
