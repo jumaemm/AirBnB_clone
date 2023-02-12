@@ -3,12 +3,13 @@
 Stores dictionary representation in JSON format,
 for easy readability
 """
-import json 
+import json
 from models.base_model import BaseModel
+
 
 class FileStorage:
     """Converts dictionary representation to a JSON string.
-    
+
     Attributes:
         __file_path(str): File to save to
         __objects (dict): objects dictionary
@@ -20,11 +21,12 @@ class FileStorage:
     def all(self):
         """returns the dictionary representation"""
         return self.__objects
+
     def new(self, obj):
         """sets the obj with the key in __objects"""
         if (obj):
-            self.__objects["{}.{}".format(type(obj).__name__, obj.id] = obj
-    
+            self.__objects["{}.{}".format(type(obj).__name__, obj.id)] = obj
+
     def save(self):
         """serializes objects to JSON file"""
         obj_dict = {}
@@ -39,6 +41,6 @@ class FileStorage:
             with open(self.__file_path, 'r') as file:
                 ob = json.load(file)
                 for key in ob:
-                    self.__objects[key] = classes[ob[key]["__class__"]](**ob[key])
-    except:
-        pass
+                    self.__objects[key] = cls[ob[key]["__class__"]](**ob[key])
+        except FileNotFoundError:
+            pass
