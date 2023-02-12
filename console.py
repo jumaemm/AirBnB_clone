@@ -92,7 +92,8 @@ class HBNBCommand(cmd.Cmd):
         if (line == "" or line is None):
             print("** class name missing **")
             return
-        rex = r'^(\w+)\s([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})\s(\w+)\s(\S+)$'
+        rex = (r'^(\w+)\s([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]\
+                {4}-[a-z0-9]{4}-[a-z0-9]{12})\s(\w+)\s(\S+)$')
         match = re.search(rex, line)
         if not match:
             print("** class name missing **")
@@ -119,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
                 setattr(storage.all()[key], attribute, value)
                 self.storage.save()
 
-    def do_EOF():
+    def do_EOF(self, line):
         """EOF signal"""
         print("")
         return True
