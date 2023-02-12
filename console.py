@@ -58,6 +58,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_destroy(self, line):
+        """Destroy the instance of the given classs and ID"""
         arg_list = line.split()
         if arg_list:
             if arg_list[0] not in CLASSES:
@@ -75,6 +76,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_all(self, line):
+        """Show all instances; whether for a given class or in
+        the entire JSON file"""
         arg_list = [i for i in line.split(" ")]
         instances = self.storage.all().values()
         if len(arg_list) == 1:
@@ -116,7 +119,7 @@ class HBNBCommand(cmd.Cmd):
                 setattr(storage.all()[key], attribute, value)
                 self.storage.save()
 
-    def do_EOF:
+    def do_EOF():
         """EOF signal"""
         print("")
         return True
